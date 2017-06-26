@@ -52,6 +52,9 @@ class UserManager(models.Manager):
         if len(userInfo['last_name']) < 2:
             registrationObject['errors'].append('Last name is less than 2 char.')
             validRegistration = False
+        if User.objects.filter(email=userInfo['email']):
+            registrationObject['errors'].append("Email is already registered.")
+            validRegistration = False
         if not EMAIL_REGEX.match(userInfo['email']):
             registrationObject['errors'].append('Email is not a valid Email!')
             validRegistration = False
