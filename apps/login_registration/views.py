@@ -17,7 +17,8 @@ def register(request):
         else:
             for error in userObject['errors']:
                 messages.warning(request, error)
-            return redirect(reverse('auth:index')) #change this line
+            return redirect(reverse('auth:index')) 
+
     else:
         return redirect('auth:index')
 
